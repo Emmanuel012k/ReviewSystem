@@ -1,0 +1,50 @@
+<div class="auth-container">
+  <div class="logo-container">
+    <img src="https://i.postimg.cc/MKVZSjnK/review-logo-red.png" alt="Review Logo" class="auth-logo">
+  </div>
+  
+  <div class="auth-card">
+    <h2>Login</h2>
+    
+    <form (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group">
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          [ngClass]="{ 'is-invalid': submitted && loginForm.get('email')?.errors }"
+        >
+        <div *ngIf="submitted && loginForm.get('email')?.errors" class="error-message">
+          <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
+          <div *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          [ngClass]="{ 'is-invalid': submitted && loginForm.get('password')?.errors }"
+        >
+        <div *ngIf="submitted && loginForm.get('password')?.errors" class="error-message">
+          <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Login</button>
+      
+      <div *ngIf="submitStatus === 'success'" class="alert success">
+        Login successful!
+      </div>
+      
+      <div *ngIf="submitStatus === 'error'" class="alert error">
+        Please fix the errors and try again.
+      </div>
+      
+      <div class="auth-links">
+        <a routerLink="/register">Don't have an account? Register</a>
+      </div>
+    </form>
+  </div>
+</div>
